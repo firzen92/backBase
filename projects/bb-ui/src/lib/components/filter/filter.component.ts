@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-filter',
+  selector: 'lib-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })

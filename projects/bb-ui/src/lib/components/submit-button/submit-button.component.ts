@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-submit-button',
+  selector: 'lib-submit-button',
   templateUrl: './submit-button.component.html',
   styleUrls: ['./submit-button.component.scss']
 })

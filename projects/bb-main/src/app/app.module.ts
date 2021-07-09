@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { BbUIModule } from "bb-ui";
+import { BbUIModule } from 'bb-ui';
 
 import { AppComponent } from './app.component';
 
