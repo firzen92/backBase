@@ -1,0 +1,18 @@
+.container-fluid {
+    header {
+        height: 60px;
+        padding: 10px;
+        box-shadow: 0px 0px 6px #a8c8dd;
+    }
+    section {
+        height: calc(100vh - 120px);
+        background-image: url('../assets/background.jpg');
+        background-position: top;
+        background-size: cover;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        height: 60px;
+    }
+}
