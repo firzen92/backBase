@@ -1,6 +1,171 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "bb-ui": {
+      "projectType": "library",
+      "root": "projects/bb-ui",
+      "sourceRoot": "projects/bb-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/bb-ui/tsconfig.lib.json",
+            "project": "projects/bb-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/bb-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bb-ui/src/test.ts",
+            "tsConfig": "projects/bb-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/bb-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bb-ui/tsconfig.lib.json",
+              "projects/bb-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "bb-main": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/bb-main",
+      "sourceRoot": "projects/bb-main/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bb-main",
+            "index": "projects/bb-main/src/index.html",
+            "main": "projects/bb-main/src/main.ts",
+            "polyfills": "projects/bb-main/src/polyfills.ts",
+            "tsConfig": "projects/bb-main/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/bb-main/src/favicon.ico",
+              "projects/bb-main/src/assets"
+            ],
+            "styles": [
+              "projects/bb-main/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bb-main/src/environments/environment.ts",
+                  "with": "projects/bb-main/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bb-main:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bb-main:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bb-main:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bb-main/src/test.ts",
+            "polyfills": "projects/bb-main/src/polyfills.ts",
+            "tsConfig": "projects/bb-main/tsconfig.spec.json",
+            "karmaConfig": "projects/bb-main/karma.conf.js",
+            "assets": [
+              "projects/bb-main/src/favicon.ico",
+              "projects/bb-main/src/assets"
+            ],
+            "styles": [
+              "projects/bb-main/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bb-main/tsconfig.app.json",
+              "projects/bb-main/tsconfig.spec.json",
+              "projects/bb-main/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bb-main/e2e/protractor.conf.js",
+            "devServerTarget": "bb-main:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bb-main:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "e3aeb8ec-3c56-47de-a311-236e6efe8ac8"
+  },
+  "defaultProject": "bb-ui"
 }
