@@ -6,6 +6,9 @@
     }
     section {
         height: calc(100vh - 120px);
+        padding: 40px 120px 0 120px;
+        display: flex;
+        justify-content: space-between;
         background-image: url('../assets/background.jpg');
         background-position: top;
         background-size: cover;

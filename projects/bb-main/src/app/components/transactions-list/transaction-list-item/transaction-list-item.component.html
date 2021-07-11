@@ -1,0 +1,17 @@
+<lib-transaction-item class="d-flex justify-content-between">
+    <div data-test-hook="transactionColour">
+        Color here
+    </div>
+    <div data-test-hook="transactionDate">
+        {{details.dates.valueDate}}
+    </div>
+    <div data-test-hook="transactionMerchantName">
+        {{details.merchant.name}}
+    </div>
+    <div data-test-hook="transactionType">
+        {{details.transaction.type}}
+    </div>
+    <div data-test-hook="transactionAmount">
+        {{details.transaction.amountCurrency.amount}}
+    </div>
+</lib-transaction-item>
