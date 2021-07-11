@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header">
+        Make Transfer
+    </div>
+    <div class="card-body">
+        <form [formGroup]='transferForm'>
+            <div class="form-group">
+                <label for="fromAccount">From Account</label>
+                <input type="text" id="fromAccount" class="form-control" readonly value="My Personal Account">
+            </div>
+            <div class="form-group">
+                <label for="toAccount">To Account</label>
+                <input type="text" id="toAccount" class="form-control" formControlName="merchant" placeholder="type an account name" class="form-control">
+                <div *ngIf="transferForm.get('merchant').touched && transferForm.get('merchant').errors?.required" class="error-message">This field is required</div>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend">$</span>
+                    </div>
+                    <input type="number" class="form-control" formControlName="amount"  id="amount" placeholder="specify the amount">
+                    <div *ngIf="transferForm.get('amount').touched && transferForm.get('amount').errors?.noBalance" class="error-message">There is not enough balance</div>
+                    <div *ngIf="transferForm.get('amount').touched && transferForm.get('amount').errors?.required" class="error-message">This field is required</div>
+                    <div *ngIf="transferForm.get('amount').touched && transferForm.get('amount').errors?.negValue" class="error-message">Please enter a valid amount</div>
+                </div>
+            </div>
+            <lib-submit-button (submitForm)="onSubmit()"></lib-submit-button>
+        </form>
+    </div>
+</div>
+<ng-template #makeTransferModal>
+    <app-bt-modal [t]="transferForm.get('merchant').value" [a]="transferForm.get('amount').value"></app-bt-modal>
+</ng-template>
