@@ -1,0 +1,11 @@
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9ecef;
+    .band {
+        width: 5px;
+        height: 60px;
+    }
+}

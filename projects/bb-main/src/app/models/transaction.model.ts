@@ -5,7 +5,7 @@ export interface Transaction {
         accountNumber: string;
     }
     dates: {
-        valueDate: string;
+        valueDate: any;
     }
     categoryCode: string;
     transaction: {
@@ -16,5 +16,4 @@ export interface Transaction {
             amount: string;
         }
     }
-
 }
