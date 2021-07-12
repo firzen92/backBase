@@ -30,5 +30,5 @@
     </div>
 </div>
 <ng-template #makeTransferModal>
-    <app-bt-modal [t]="transferForm.get('merchant').value" [a]="transferForm.get('amount').value"></app-bt-modal>
+    <app-bt-modal [t]="transferForm.get('merchant').value" [a]="transferForm.get('amount').value" (close)="onClose()"></app-bt-modal>
 </ng-template>

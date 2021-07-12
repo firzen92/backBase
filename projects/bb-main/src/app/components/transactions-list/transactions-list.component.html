@@ -1,9 +1,11 @@
 <div class="card">
     <div class="card-header">
-        Transactions <strong>List</strong>
+        Transactions <strong>List</strong>r
     </div>
+
     <div class="card-body">
-        <app-transaction-list-item [details]="item" *ngFor="let item of transactions">
+        <lib-filter (inputChange)="onInpChange($event)"></lib-filter>
+        <app-transaction-list-item [details]="item" *ngFor="let item of filteredTransactions">
         </app-transaction-list-item>
     </div>
-</div>
+</div> 

@@ -13,7 +13,7 @@ export interface Transaction {
         creditDebitIndicator: string;
         amountCurrency: {
             currencyCode: string;
-            amount: string;
+            amount: number;
         }
     }
 }

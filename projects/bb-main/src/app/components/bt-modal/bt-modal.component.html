@@ -3,7 +3,7 @@
         <strong>Review</strong>
         Transfer
     </h4>
-    <button type="button" class="close" aria-label="Close">
+    <button type="button" (click)="onClose()" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -23,6 +23,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark">Close</button>
-    <button type="button" class="btn-primary btn">Send Transfer</button>
+    <button type="button" (click)="onClose()" class="btn btn-outline-dark">Close</button>
+    <button type="button" (click)="transferAmt()" class="btn-primary btn">Send Transfer</button>
 </div>

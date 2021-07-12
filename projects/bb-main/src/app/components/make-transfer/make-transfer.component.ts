@@ -43,4 +43,9 @@ export class MakeTransferComponent implements OnInit {
     };
     this.modalService.open(this.makeTransferModal, options);
   }
+
+  onClose() {
+    this.modalService.dismissAll();
+  }
+
 }

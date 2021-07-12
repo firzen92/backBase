@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Transaction } from "../models/transaction.model";
 import { map, tap } from 'rxjs/operators';
 
@@ -8,6 +8,8 @@ import { map, tap } from 'rxjs/operators';
 
 export class TransactionService {
     private _transactionsList: Transaction[] = [];
+
+    transactionsModified$ = new Subject();
 
     constructor(private http: HttpClient) { }
 
@@ -22,7 +24,7 @@ export class TransactionService {
                 .pipe(
                     map((results: any) => {
                         results.forEach(item => {
-                            if(item.dates.valueDate.toString().includes('-')) {
+                            if (item.dates.valueDate.toString().includes('-')) {
                                 item.dates.valueDate = new Date(item.dates.valueDate).getTime();
                             }
                         })
@@ -31,11 +33,21 @@ export class TransactionService {
                     tap((results: Transaction[]) => {
                         results = results.sort((a, b) => {
                             return b.dates.valueDate - a.dates.valueDate;
-                        })
+                        });
+                        this._transactionsList = results;
                     })
                 )
         }
+    }
 
+    get transactionsList() {
+        return this._transactionsList;
+    }
+
+
+    addTransaction(transaction: Transaction) {
+        this._transactionsList.unshift(transaction);
+        this.transactionsModified$.next();
     }
 
 }
